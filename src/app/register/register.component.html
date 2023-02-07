@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="register.component.css">
+  </head>
+  <body>
+    <form name="form" (ngSubmit)="register()" #f="ngForm">
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" id="name" [(ngModel)]="model.name" #name="ngModel" required />
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="form-control" id="password" [(ngModel)]="model.password" #password="ngModel" required />
+      </div>
+      <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" id="email" [(ngModel)]="model.email" #email="ngModel" required />
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+              <div>
+                <label for="groupName">Group name</label>
+                <input type="text" name="groupName" class="form-control" id="groupName" [(ngModel)]="model.groupName" #groupName="ngModel" required />
+              </div>
+              <div>
+                <label for="age">Age</label>
+                <input type="text" name="age" class="form-control" id="age" [(ngModel)]="model.age" #age="ngModel" required />
+              </div>
+            </div>
+        </div>
+          
+          
+        <div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+  </body>
+</html>

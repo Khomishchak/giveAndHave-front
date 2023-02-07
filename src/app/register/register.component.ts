@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
-  
+export class RegisterComponent implements OnInit {
+
   model: any = {};
-  token: any = "";
+  token: string = "";
 
   constructor(
     private router: Router,
@@ -19,13 +19,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
-    let url = '/api/auth/login';
+  register() {
+    let url = '/api/auth/register';
     this.http.post<any>(url, {
       name: this.model.name,
-      password: this.model.password
+      password: this.model.password,
+      email: this.model.email,
+      groupName: this.model.groupName,
+      age: this.model.age
     }).subscribe(res => {
-
       this.token = res.token;
 
       localStorage.setItem(
@@ -34,10 +36,6 @@ export class LoginComponent implements OnInit {
       );
 
       this.router.navigate(['']); 
-    }) 
-  }
-
-  logout() {
-    localStorage.removeItem('token');
+    })
   }
 }
