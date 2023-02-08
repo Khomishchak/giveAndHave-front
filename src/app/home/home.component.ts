@@ -17,6 +17,10 @@ export class HomeComponent implements OnInit {
     const jwtToken = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + jwtToken);
 
-    this.message = this.http.get<string>('/api/home/hello', { headers }).subscribe();
+    this.message = this.http.get('/api/home/hello', { headers, responseType: 'text' }).subscribe(
+      message => {
+        this.message = message;
+      }
+    );
   }
 }
