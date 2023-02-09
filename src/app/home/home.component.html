@@ -1,1 +1,42 @@
-<p>{{ message }}</p>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="home.component.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+              <div class="balance">
+                Your Balance: {{ balance }}
+              </div>
+            </div>
+            <div class="main">
+              <div class="section">
+                <h2>Last Transactions</h2>
+                <table>
+                  <tr *ngFor="let transaction of transactions">
+                    <td>{{ transaction.cost }}</td>
+                    <td>{{ transaction.createdAt }}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="section">
+                <h2>Best Freelancers</h2>
+                <table>
+                  <tr *ngFor="let freelancer of freelancers">
+                    <td>{{ freelancer.name }}</td>
+                    <td>{{ freelancer.groupName }}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="section">
+                <h2>Actions</h2>
+                <div *ngFor="let action of actions">
+                  <button (click)="performAction(action)">{{ action }}</button>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+          </div>
+    </body>
+</html>
+

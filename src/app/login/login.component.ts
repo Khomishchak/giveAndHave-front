@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -20,8 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let url = '/api/auth/login';
-    this.http.post<any>(url, {
+    const loginURL = '/api/auth/login';
+    
+    this.http.post<any>(loginURL, {
       name: this.model.name,
       password: this.model.password
     }).subscribe(res => {
@@ -35,9 +39,5 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['']); 
     }) 
-  }
-
-  logout() {
-    localStorage.removeItem('token');
   }
 }

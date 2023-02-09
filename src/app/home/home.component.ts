@@ -1,5 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Transaction } from '../models/transaction';
+import { User } from '../models/user';
+import { TransactionService } from '../services/transaction.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +12,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  message: any = "";
+  currentUser: User;
+  balance: number;
 
-  constructor(private http: HttpClient) { }
+  transactions: Transaction[];
+  freelancers: User[];
+  actions: any;
+
+  constructor(private router: Router,
+    private userService: UserService,
+    private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    
-    const jwtToken = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + jwtToken);
 
-    this.message = this.http.get('/api/home/hello', { headers, responseType: 'text' }).subscribe(
-      message => {
-        this.message = message;
+    this.userService.getUser().subscribe(data => {
+      this.currentUser = data;
+      this.balance = this.currentUser.balance;
+    })
+
+    this.userService.getUsers().subscribe(data => {
+        this.freelancers = data;
       }
-    );
+    )
+
+    this.transactionService.getTransactions().subscribe(data => {
+      this.transactions = data;
+    })
+  }
+
+  performAction(action: any) {
+    alert("action was done");
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']); 
   }
 }
