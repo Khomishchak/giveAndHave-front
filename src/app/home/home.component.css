@@ -45,3 +45,18 @@
     height: 1px;
     background-color: #ccc;
   }
+  button {
+    width: 150px;
+    padding: 20px;
+    font-size: 1.2em;
+    background-color: #fa6759;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 70px auto;
+  }
+  
+  button:hover {
+    background-color: #cf2a1b;
+  }

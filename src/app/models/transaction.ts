@@ -2,8 +2,7 @@ import { User } from "./user";
 
 export class Transaction {
 
-
-    createdAt: number;
+    createdAt: string;
     cost: number;
 
     client: User;

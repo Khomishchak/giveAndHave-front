@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getUsers(): Observable<User[]> {
+  public getFreelancers(): Observable<User[]> {
 
     const url = '/api/get/user/all';
 

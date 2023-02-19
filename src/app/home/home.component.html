@@ -1,8 +1,9 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="home.component.css">
+      <link rel="stylesheet" type="text/css" href="home.component.css">
     </head>
     <body>
+      <div id="mainContainer">
         <div class="container">
             <div class="header">
               <div class="balance">
@@ -37,6 +38,43 @@
             </div>
             <div class="line"></div>
           </div>
+          
+          <!--Post Task Modal-->
+          <div class="modal fade" id="postTaskModal" tabindex="-1" aria-labelledby="postTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="postTaskModalLabel">Post Task</h1>
+                  <button type="button" id="post-task-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form #postForm="ngForm" (ngSubmit)="onPostTask(postForm)">
+                    <div class="form-group">
+                      <label for="name">Subject</label>
+                      <input type="text" ngModel name="subject" class="form-control" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Description</label>
+                      <input type="text" ngModel name="taskDescription" class="form-control" id="taskDescription" placeholder="Description" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Price</label>
+                      <input type="text" ngModel name="price" class="form-control" id="price" placeholder="Price" required>
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="phone">Deadline</label>
+                      <input type="datetime-local" ngModel name="deadline" class="form-control" id="deadline" placeholder="Deadline">
+                    </div> -->
+                    <div class="modal-footer">
+                      <button [disabled]="postForm.invalid" type="submit" class="btn btn-primary" >POST</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
     </body>
 </html>
 
