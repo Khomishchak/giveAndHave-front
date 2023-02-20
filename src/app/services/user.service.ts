@@ -24,4 +24,10 @@ export class UserService {
 
     return this.http.get<User>(getUserURL);
   }
+
+  public getPairInTransaction(transactionId: number) {
+    const getPairInTransaction = `/api/get/pairInTransaction/${transactionId}`;
+
+    return this.http.get<User[]>(getPairInTransaction);
+  }
 }
