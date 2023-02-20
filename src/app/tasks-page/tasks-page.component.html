@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="tasks-page.component.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task List</h1>
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Task Subject</th>
+            <th>Task Description</th>
+            <th>Task Price</th>
+            <th>Task Deadline</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td class="cell">{{ task.subject }}</td>
+            <td class="cell">{{ task.description }}</td>
+            <td class="cell">{{ task.price }}</td>
+            <td class="cell">{{ task.deadline }}</td>
+            <td class="cell">
+              <span class="status-dot {{ task.taskActive ? 'active' : 'taken'}}"></span>
+            </td>
+            <td class="cell">
+              <button [disabled]="!task.taskActive" (click)="performAction(task)">Take Task</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

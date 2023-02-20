@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RequestInterceptor } from './request.interceptor';
+import { TasksPageComponent } from './tasks-page/tasks-page.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RequestInterceptor } from './request.interceptor';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    TasksPageComponent
   ],
   imports: [
     BrowserModule,

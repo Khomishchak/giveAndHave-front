@@ -1,9 +1,11 @@
 export class Task {
 
     subject: string;
-    taskDescription: string;
+    description: string;
 
     price: number;
 
-    // deadline: Date | null;
+    taskActive: boolean;
+
+    deadline: Date | null;
 }
