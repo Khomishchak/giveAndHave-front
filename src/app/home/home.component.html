@@ -10,6 +10,8 @@
                 <div class="balance">
                   Your Balance: {{ balance }}
                 </div>
+                <button (click)="logout()" class="messages-btn">Messages</button>
+                <button (click)="performAction('Profile')" class="profile-btn">Profile</button>
                 <button (click)="logout()" class="logout-btn">Logout</button>
               </div>
             </div>
@@ -83,6 +85,52 @@
                     <div class="modal-footer">
                       <button [disabled]="postForm.invalid" type="submit" class="btn btn-primary" >POST</button>
                     </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---->
+
+          <!--Profile Modal-->
+          <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="profileModalLabel">Profile</h1>
+                  <button type="button" id="profile-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form #updateProfileForm="ngForm" (ngSubmit)="onUpdateProfile(updateProfileForm)">
+                    <div class="form-group">
+                      <label for="name">Id</label>
+                      <input [disabled]="true" ngModel name="id" type="text" class="form-control" id="id" placeholder="{{currentUser.id}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input [disabled]="profileDisabled" ngModel name="name" type="text" class="form-control" id="name" placeholder="{{currentUser.name}}" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Email</label>
+                      <input [disabled]="profileDisabled" ngModel name="email" type="text" class="form-control" id="email" placeholder="{{currentUser.email}}" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Group name</label>
+                      <input [disabled]="profileDisabled" ngModel name="groupName" type="text" class="form-control" id="groupName" placeholder="{{currentUser.groupName}}" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Balance</label>
+                      <input [disabled]="true" ngModel name="balance" type="text" class="form-control" id="balance" placeholder="{{currentUser.balance}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Age</label>
+                      <input [disabled]="true" ngModel name="age" type="text" class="form-control" id="age" placeholder="{{currentUser.age}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Verification</label>
+                      <input [disabled]="true" ngModel name="isVerified" type="text" class="form-control" id="verification" placeholder="{{currentUser.isVerified ? 'Verified' : 'Not Verified'}}">
+                    </div>
+                    <!---->
                   </form>
                 </div>
               </div>

@@ -14,6 +14,26 @@
     width: 100%;
   }
 
+  .profile-btn, .messages-btn {
+    background-color: #fa6759;
+    margin: 0;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-right: 10px;
+  }
+
+  .messages-btn {
+    background-color: #54b4f9;
+  }
+
+  .messages-btn:hover {
+    background-color: #0095ff;
+  }
+
   .logout-btn {
     background-color: red;
     margin: 0;
@@ -96,7 +116,7 @@
   th,
   td {
     text-align: left;
-    padding: 8px;
+    padding: 2px;
   }
   
   th {

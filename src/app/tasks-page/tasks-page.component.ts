@@ -26,7 +26,6 @@ export class TasksPageComponent implements OnInit {
     return this.taskService.findAllTasks().subscribe(
       data => {
         this.tasks = data
-        console.log(this.tasks);
       }
     );
   }

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   currentUser: User;
   balance: number;
+  profileDisabled: boolean = true;
 
   showModal: boolean = false;
 
@@ -44,8 +45,7 @@ export class HomeComponent implements OnInit {
     this.transactionService.getTransactions().subscribe(data => {
       this.transactions = data;
       this.transactions.forEach((transaction) => {
-        this.attachUsersToTransaction(transaction)
-        console.log(transaction)});
+        this.attachUsersToTransaction(transaction)});
     })
   }
 
@@ -60,9 +60,11 @@ export class HomeComponent implements OnInit {
 
     if(action === 'Post Task') {
       button.setAttribute('data-bs-target', '#postTaskModal');
-    }else if(action == 'Take Task') {
+    } else if(action == 'Take Task') {
       this.router.navigate(['/tasks']);
-    } 
+    } else if(action == 'Profile') {
+      button.setAttribute('data-bs-target', '#profileModal');
+    }
 
     container?.appendChild(button);
     button.click();
@@ -74,11 +76,17 @@ export class HomeComponent implements OnInit {
 
     let task: Task = postForm.value;
     task.taskActive = true;
-    console.log(task);
 
     this.taskService.postTask(task, this.currentUser.id).subscribe();
 
     postForm.reset();
+  }
+
+  onUpdateProfile(updateProfileForm: NgForm) {
+  }
+
+  makeProfileChangeable() {
+    this.profileDisabled = !this.profileDisabled;
   }
 
   logout() {
@@ -90,7 +98,6 @@ export class HomeComponent implements OnInit {
     this.userService.getPairInTransaction(transaction.id).subscribe(
       data => {
         let users: User[] = data;
-        console.log(users);
         transaction.sender = users[0];
         transaction.receiver = users[1];
       }
