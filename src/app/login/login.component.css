@@ -50,3 +50,12 @@ body {
     margin-top: 2rem;
   }
   
+  .register {
+    margin-top: 15px;
+  }
+
+  .register > a {
+    display: inline-block;
+    text-decoration: none;
+  }
+  

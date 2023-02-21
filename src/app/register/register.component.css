@@ -80,3 +80,13 @@ button[type="submit"] {
   width: 45vw;
   margin-top: 1rem;
 }
+
+.login {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login > a {
+  display: inline-block;
+  text-decoration: none;
+}
