@@ -32,16 +32,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getCurrentUser();
+
+    this.getFreelancers();
+    
+    this.getAllTrnsactions();
+  }
+
+  private getCurrentUser() {
     this.userService.getUser().subscribe(data => {
       this.currentUser = data;
       this.balance = this.currentUser.balance;
     })
+  }
 
+  private getFreelancers() {
     this.userService.getFreelancers().subscribe(data => {
-        this.freelancers = data;
-      }
-    )
+      this.freelancers = data;
+    })
+  }
 
+  private getAllTrnsactions() {
     this.transactionService.getTransactions().subscribe(data => {
       this.transactions = data;
       this.transactions.forEach((transaction) => {
@@ -77,7 +88,11 @@ export class HomeComponent implements OnInit {
     let task: Task = postForm.value;
     task.taskActive = true;
 
-    this.taskService.postTask(task, this.currentUser.id).subscribe();
+    this.taskService.postTask(task, this.currentUser.id).subscribe(
+      res => {
+        this.openCreatedTaskModal();
+      }
+    );
 
     postForm.reset();
   }
@@ -104,5 +119,18 @@ export class HomeComponent implements OnInit {
     );
 
     return transaction;
+  }
+
+  private openCreatedTaskModal() {
+    const container = document.getElementById('createTask');
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#createTask');
+
+    container?.appendChild(button);
+    button.click();
   }
 }

@@ -130,13 +130,27 @@
                       <label for="name">Verification</label>
                       <input [disabled]="true" ngModel name="isVerified" type="text" class="form-control" id="verification" placeholder="{{currentUser.isVerified ? 'Verified' : 'Not Verified'}}">
                     </div>
-                    <!---->
                   </form>
                 </div>
               </div>
             </div>
           </div>
           <!---->
+          <!--Create Task Modal-->
+            <div class="modal fade" id="createTask" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div id="modal-content_2" class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createTaskModalLabes">Created</h1>
+                    <button type="button" id="create-task-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h3 id="createTaskModalText">Task was successfully created</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!---->
         </div>
     </body>
 </html>

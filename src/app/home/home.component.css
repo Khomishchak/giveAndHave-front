@@ -142,3 +142,39 @@
   label {
     margin-bottom: 5px;
   }
+
+  #modal-content_2{
+    background-color: rgb(113, 176, 113);
+  }
+  
+  .modal-header {
+    border-bottom: none;
+  }
+  
+  .modal-footer {
+    border-top: none;
+  }
+  
+  #createTask {
+    color: white;
+  }
+  
+  #createTaskModalText {
+    margin: 0px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; 
+    font-weight: normal;
+    font-style: normal; 
+    font-size: 20px;
+    color: white;
+  }
+  #create-task-form {
+    background-color: rgb(80, 180, 80);
+    border: 2px solid rgb(0, 64, 0);
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  #create-task-form:hover {
+    background-color: rgb(0, 64, 0);
+  }
