@@ -1,61 +1,92 @@
 body {
-    background-color: #f2f2f2;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  background-color: #f2f2f2;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
   
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-  }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
   
-  label {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
   
-  input[type="text"],
-  input[type="password"] {
-    padding: 1rem;
-    border-radius: 2px;
-    border: none;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    font-size: 1.2rem;
-    background-color: #fff;
-  }
+input[type="text"],
+input[type="password"] {
+  padding: 1rem;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  font-size: 1.2rem;
+  background-color: #fff;
+}
 
-  input[type="password"]{
-    margin-bottom: 5rem;
-  }
+input[type="password"]{
+  margin-bottom: 5rem;
+}
   
-  button[type="submit"] {
-    padding: 1rem;
-    background-color: #ff6f61;
-    color: white;
-    border-radius: 2px;
-    border: none;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 1.2rem;
-    width: 100%;
-    margin-top: 2rem;
-  }
+button[type="submit"] {
+  padding: 1rem;
+  background-color: #ff6f61;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 100%;
+  margin-top: 2rem;
+}
   
-  .register {
-    margin-top: 15px;
-  }
+.register {
+  margin-top: 15px;
+}
 
-  .register > a {
-    display: inline-block;
-    text-decoration: none;
-  }
-  
+.register > a {
+  display: inline-block;
+  text-decoration: none;
+}
+.modal-content {
+  background-color: #333334;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+#badCredentials {
+  color: #ff6f61;
+}
+
+#badCredentialsText {
+  margin: 0px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: normal;
+  font-style: normal; 
+  font-size: 20px;
+  color: #ff6f61;
+}
+#profile-form {
+  background-color: #ff6f61;
+  border: 2px solid #e8493a;
+  border-radius: 5px;
+  font-size: 14px;
+}

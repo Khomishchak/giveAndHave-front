@@ -38,6 +38,23 @@ export class LoginComponent implements OnInit {
       );
 
       this.router.navigate(['']); 
+    },
+    err => {
+      this.showNotFoundError();
     }) 
+  }
+
+  private showNotFoundError() {
+  
+    const container = document.getElementById('buttons');
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#badCredentials');
+
+    container?.appendChild(button);
+    button.click();
   }
 }

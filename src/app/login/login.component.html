@@ -12,12 +12,47 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control" id="password" [(ngModel)]="model.password" #password="ngModel" required />
       </div>
-      <div>
+      <div id="buttons">
         <button type="submit" class="btn btn-primary">Login</button>
         <div class="register">
           Don't have an account?
           <a href="/register">Sing up</a>
         </div>
+
+        <!--Bad credantials modal-->
+        <div class="modal fade" id="Error_pass" tabindex="-1" role="dialog" aria-labelledby="Error_pass_title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="Error_pass_title"><i class="fas fa-exclamation-circle"></i> Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--Bad credencials Modal-->
+        <div class="modal fade" id="badCredentials" tabindex="-1" aria-labelledby="badCredentialsLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div id="modal-content_2" class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="badCredentialsLabes">Error</h1>
+                <button type="button" id="profile-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h3 id="badCredentialsText">Wrong name or password</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
       </div>
     </form>
   </body>
