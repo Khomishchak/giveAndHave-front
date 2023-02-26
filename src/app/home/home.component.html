@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group">
                       <label for="name">Age</label>
-                      <input [disabled]="true" ngModel name="age" type="text" class="form-control" id="age" placeholder="{{currentUser.age}}">
+                      <input [disabled]="true" ngModel name="age" type="text" class="form-control" id="age" [placeholder]="currentUser.age > 0 ? currentUser.age : 'Not Given'">
                     </div>
                     <div class="form-group">
                       <label for="name">Verification</label>
