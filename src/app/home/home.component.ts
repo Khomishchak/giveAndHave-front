@@ -39,27 +39,6 @@ export class HomeComponent implements OnInit {
     this.getAllTrnsactions();
   }
 
-  private getCurrentUser() {
-    this.userService.getUser().subscribe(data => {
-      this.currentUser = data;
-      this.balance = this.currentUser.balance;
-    })
-  }
-
-  private getFreelancers() {
-    this.userService.getFreelancers().subscribe(data => {
-      this.freelancers = data;
-    })
-  }
-
-  private getAllTrnsactions() {
-    this.transactionService.getTransactions().subscribe(data => {
-      this.transactions = data;
-      this.transactions.forEach((transaction) => {
-        this.attachUsersToTransaction(transaction)});
-    })
-  }
-
   performAction(action: any) {
 
     const container = document.getElementById('mainContainer');
@@ -107,6 +86,27 @@ export class HomeComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']); 
+  }
+
+  private getCurrentUser() {
+    this.userService.getUser().subscribe(data => {
+      this.currentUser = data;
+      this.balance = this.currentUser.balance;
+    })
+  }
+
+  private getFreelancers() {
+    this.userService.getFreelancers().subscribe(data => {
+      this.freelancers = data;
+    })
+  }
+
+  private getAllTrnsactions() {
+    this.transactionService.getTransactions().subscribe(data => {
+      this.transactions = data;
+      this.transactions.forEach((transaction) => {
+        this.attachUsersToTransaction(transaction)});
+    })
   }
 
   private attachUsersToTransaction(transaction: Transaction) {
