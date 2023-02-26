@@ -23,4 +23,11 @@ export class TaskService {
 
     return this.http.get<Task[]>(getAllTasksUrl);
   }
+
+  public postRequestForTask(userId: number, taskId: number): Observable<void> {
+
+    const postRequestForTaskUrl = `/api/post/request/task/${userId}/${taskId}`;
+
+    return this.http.post<void>(postRequestForTaskUrl, {});
+  }
 }

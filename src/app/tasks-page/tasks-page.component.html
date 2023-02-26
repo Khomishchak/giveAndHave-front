@@ -26,11 +26,47 @@
               <span class="status-dot {{ task.taskActive ? 'active' : 'taken'}}"></span>
             </td>
             <td class="cell">
-              <button [disabled]="!task.taskActive" (click)="performAction(task)">Take Task</button>
+              <button [disabled]="!task.taskActive" (click)="openRequestForTaskModal(task.id)">Take Task</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <!--Request Task Modal-->
+    <div class="modal fade" id="requestForTaskModal" tabindex="-1" aria-labelledby="requestForTaskLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="requestForTaskLabes">Request</h1>
+            <button type="button" id="request-task-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h4 id="requestForTaskModalText">Do you want to apply for given task?</h4>
+          </div>
+          <div class="modal-footer">
+            <button (click)="sendTaskRequest()" type="submit" class="btn btn-primary" >Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+
+     <!--Successfully Requested Task Modal-->
+     <div class="modal fade" id="successfullyRequestedForTaskModal" tabindex="-1" aria-labelledby="successfullyRequestedForTaskModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content_2" class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="successfullyRequestedForTaskModalLabes">Applied</h1>
+            <button type="button" id="requeste-task-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5 id="successfullyRequestedForTaskModalText">You have successfully aplied for rhis task</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+
+    <div id="invisable_buttons"></div>
   </body>
 </html>
