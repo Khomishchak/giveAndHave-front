@@ -9,12 +9,15 @@
   }
 
   .balance-container {
+    justify-content: space-between;
     display: flex;
     align-items: center;
     width: 100%;
   }
 
-  .profile-btn, .messages-btn {
+  .profile-btn, .messages-btn, .logout-btn{
+    min-width: 150px;
+    width: auto;
     background-color: #fa6759;
     margin: 0;
     color: white;
@@ -23,7 +26,15 @@
     border-radius: 5px;
     cursor: pointer;
     float: right;
-    margin-right: 10px;
+    margin-right: 20px;
+  }
+
+  .logout-btn {
+    background-color: red;
+  }
+
+  .logout-btn:hover {
+    background-color: darkred;
   }
 
   .messages-btn {
@@ -34,21 +45,6 @@
     background-color: #0095ff;
   }
 
-  .logout-btn {
-    background-color: red;
-    margin: 0;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    float: right;
-  }
-  
-  .logout-btn:hover {
-    background-color: darkred;
-  }
-
   .header {
     display: flex;
     justify-content: flex-start;
@@ -56,8 +52,8 @@
   }
 
   .balance {
+    width: auto;
     padding: 10px;
-    width: 100%;
   }
 
   .main {
@@ -178,3 +174,4 @@
   #create-task-form:hover {
     background-color: rgb(0, 64, 0);
   }
+
