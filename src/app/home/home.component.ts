@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Application } from '../models/application';
 import { Task } from '../models/task';
 import { Transaction } from '../models/transaction';
 import { User } from '../models/user';
+import { ApplicationService } from '../services/application.service';
 import { TaskService } from '../services/task.service';
 import { TransactionService } from '../services/transaction.service';
 import { UserService } from '../services/user.service';
@@ -23,12 +25,14 @@ export class HomeComponent implements OnInit {
 
   transactions: Transaction[];
   freelancers: User[];
+  newMessagesAmount: number;
   actions = ['Post Task', 'Take Task'];
 
   constructor(private router: Router,
     private userService: UserService,
     private transactionService: TransactionService,
-    private taskService: TaskService) { }
+    private taskService: TaskService,
+    private applicationService: ApplicationService) { }
 
   ngOnInit(): void {
 
@@ -36,7 +40,7 @@ export class HomeComponent implements OnInit {
 
     this.getFreelancers();
     
-    this.getAllTrnsactions();
+    this.getAllTrasactions();
   }
 
   performAction(action: any) {
@@ -54,6 +58,8 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/tasks']);
     } else if(action == 'Profile') {
       button.setAttribute('data-bs-target', '#profileModal');
+    } else if(action == 'Messages') {
+      this.router.navigate(['/messages']);
     }
 
     container?.appendChild(button);
@@ -91,6 +97,7 @@ export class HomeComponent implements OnInit {
   private getCurrentUser() {
     this.userService.getUser().subscribe(data => {
       this.currentUser = data;
+      this.getNewMessagesAmount(this.currentUser);
       this.balance = this.currentUser.balance;
     })
   }
@@ -101,12 +108,18 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  private getAllTrnsactions() {
+  private getAllTrasactions() {
     this.transactionService.getTransactions().subscribe(data => {
       this.transactions = data;
       this.transactions.forEach((transaction) => {
         this.attachUsersToTransaction(transaction)});
     })
+  }
+
+  private getNewMessagesAmount(user: User) {
+    this.applicationService.getNewMessagesAmount(user).subscribe(data => {
+      this.newMessagesAmount = data;
+    })   
   }
 
   private attachUsersToTransaction(transaction: Transaction) {
@@ -134,3 +147,4 @@ export class HomeComponent implements OnInit {
     button.click();
   }
 }
+

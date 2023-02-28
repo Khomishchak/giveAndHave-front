@@ -10,9 +10,11 @@
                 <div class="balance">
                   Your Balance: {{ balance }}
                 </div>
-                <button (click)="logout()" class="messages-btn">Messages</button>
-                <button (click)="performAction('Profile')" class="profile-btn">Profile</button>
-                <button (click)="logout()" class="logout-btn">Logout</button>
+                <div>
+                  <button (click)="logout()" class="logout-btn">Logout</button>
+                  <button (click)="performAction('Profile')" class="profile-btn">Profile</button>
+                  <button (click)="performAction('Messages')" class="messages-btn">{{ newMessagesAmount > 0 ? newMessagesAmount + ' new messages' : 'Messages' }}</button>
+                </div>
               </div>
             </div>
             <div class="main">

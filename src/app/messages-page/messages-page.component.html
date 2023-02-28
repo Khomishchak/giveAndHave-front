@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="messages-page.component.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Requests</h1>
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Task Subject</th>
+            <th>Task Price</th>
+            <th>Task Deadline</th>
+            <th>Freelancer</th>
+            <th style="width: 200px;" >Choice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let application of applications">
+            <td class="cell">{{ application.task.subject }}</td>
+            <td class="cell">{{ application.task.price }}</td>
+            <td class="cell">{{ application.task.deadline }}</td>
+            <td class="cell">{{ application.user.name  + ' ' + application.user.groupName}}</td>
+            <td class="cell">
+              <button class="choiceButton" style="background-color: rgb(113, 176, 113);" (click)="performAction('Accept', application.id)">Accept</button>
+              <button class="choiceButton" style="background-color:  #cf2a1b;" (click)="performAction('Deny', null)">Deny</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Accept Requested User-->
+    <div class="modal fade" id="acceptRequestedUserModal" tabindex="-1" aria-labelledby="acceptRequestedUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="acceptRequestedUserModalLabes">Confirm</h1>
+            <button type="button" id="request-task-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h4 id="acceptRequestedUserModalText">Do you accept requested user?</h4>
+          </div>
+          <div class="modal-footer">
+            <p id="acceptRequestedUserModalText">Warning: after you will accept user, all others will be automaticaly denied, and task status automaticely will be changed to 'taken'</p>
+            <button (click)="accept()" type="submit" class="btn btn-primary" >Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+
+     <!--Successfully Requested Task Modal-->
+     <div class="modal fade" id="acceptedUserModal" tabindex="-1" aria-labelledby="acceptedUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="modal-content_2" class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="acceptedUserModalLabes">Accepted</h1>
+            <button type="button" id="accepted-user-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5 id="acceptedUserModalText">{{ acceptedUser != null ? 'You accepted ' + acceptedUser.name : 'no'}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+    <div id="invisable_buttons"></div>
+  </body>
+</html>

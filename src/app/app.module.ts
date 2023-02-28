@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RequestInterceptor } from './request.interceptor';
 import { TasksPageComponent } from './tasks-page/tasks-page.component';
+import { MessagesPageComponent } from './messages-page/messages-page.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TasksPageComponent } from './tasks-page/tasks-page.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    TasksPageComponent
+    TasksPageComponent,
+    MessagesPageComponent
   ],
   imports: [
     BrowserModule,
