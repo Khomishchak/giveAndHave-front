@@ -15,6 +15,7 @@ export class MessagesPageComponent implements OnInit {
   applications: Application[];
 
   acceptedUser: User;
+  curretnApplication: Application;
 
   constructor(private applicationService: ApplicationService,
     private userService: UserService) { }
@@ -35,7 +36,12 @@ export class MessagesPageComponent implements OnInit {
 
     if(action === 'Accept') {
       button.setAttribute('data-bs-target', '#acceptRequestedUserModal');
-      this.acceptedUser = this.applications[additional].user;
+
+      this.applications.forEach(
+        (app) => app.id == additional ? this.curretnApplication = app : false
+      )
+      this.acceptedUser = this.curretnApplication.user;
+
     } else if(action == 'Take Task') {
       
     }else if(action == 'acceptedUserModal') {
@@ -47,6 +53,11 @@ export class MessagesPageComponent implements OnInit {
   }
 
   accept() {
+
+    this.applicationService.acceptUser(this.curretnApplication.task.id , this.acceptedUser).subscribe(
+      data => console.log("DONE")
+    );
+
     this.performAction('acceptedUserModal', null);
   }
 
@@ -58,9 +69,10 @@ export class MessagesPageComponent implements OnInit {
     this.userService.getUser().subscribe(data => {
       this.currentUser = data;
       this.applicationService.getRequestedUsers(data).subscribe(
-        data => this.applications = data
+        data => {
+          this.applications = data
+        }
       );
     })
   }
-
 }

@@ -5,6 +5,8 @@ export class Application {
 
     id: number;
 
+    status: boolean
+
     task: Task;
     user: User;
 }

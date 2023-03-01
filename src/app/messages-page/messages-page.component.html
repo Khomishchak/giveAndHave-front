@@ -21,9 +21,12 @@
             <td class="cell">{{ application.task.price }}</td>
             <td class="cell">{{ application.task.deadline }}</td>
             <td class="cell">{{ application.user.name  + ' ' + application.user.groupName}}</td>
-            <td class="cell">
+            <td *ngIf="application.status == null" class="cell">
               <button class="choiceButton" style="background-color: rgb(113, 176, 113);" (click)="performAction('Accept', application.id)">Accept</button>
               <button class="choiceButton" style="background-color:  #cf2a1b;" (click)="performAction('Deny', null)">Deny</button>
+            </td>
+            <td *ngIf="application.status != null" class="cell">
+                <button class="choiceButton" style="width: auto;" [ngStyle]="{'background-color': application.status ? 'rgb(125, 220, 125)' : '#dc6358' }" [disabled]="true">{{application.status ? 'Accepted' : 'Denied'}}</button>
             </td>
           </tr>
         </tbody>
