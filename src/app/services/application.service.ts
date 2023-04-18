@@ -27,8 +27,7 @@ export class ApplicationService {
 
   public acceptUser (taskId: number, user: User): Observable<void> {
     const acceptUserUrl = `/api/accept/user-for-task/${taskId}`;
-    console.log(acceptUserUrl);
-    console.log(user);
+
     return this.http.post<void>(acceptUserUrl, user);
   }
 }
