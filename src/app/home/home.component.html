@@ -95,7 +95,7 @@
           <!---->
 
           <!--Profile Modal-->
-          <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+          <div *ngIf="currentUser != null" class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -106,31 +106,35 @@
                   <form #updateProfileForm="ngForm" (ngSubmit)="onUpdateProfile(updateProfileForm)">
                     <div class="form-group">
                       <label for="name">Id</label>
-                      <input [disabled]="true" ngModel name="id" type="text" class="form-control" id="id" placeholder="{{currentUser.id}}">
+                      <input [disabled]="true" ngModel name="id" type="text" class="form-control" id="id" [(ngModel)]="currentUser.id">
                     </div>
                     <div class="form-group">
                       <label for="name">Name</label>
-                      <input [disabled]="profileDisabled" ngModel name="name" type="text" class="form-control" id="name" placeholder="{{currentUser.name}}" required>
+                      <input [disabled]="profileDisabled" ngModel name="name" type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" required>
                     </div>
                     <div class="form-group">
                       <label for="name">Email</label>
-                      <input [disabled]="profileDisabled" ngModel name="email" type="text" class="form-control" id="email" placeholder="{{currentUser.email}}" required>
+                      <input [disabled]="profileDisabled" ngModel name="email" type="text" class="form-control" id="email" [(ngModel)]="currentUser.email" required>
                     </div>
                     <div class="form-group">
                       <label for="name">Group name</label>
-                      <input [disabled]="profileDisabled" ngModel name="groupName" type="text" class="form-control" id="groupName" placeholder="{{currentUser.groupName}}" required>
+                      <input [disabled]="profileDisabled" ngModel name="groupName" type="text" class="form-control" id="groupName" [(ngModel)]="currentUser.groupName" required>
                     </div>
                     <div class="form-group">
                       <label for="name">Balance</label>
-                      <input [disabled]="true" ngModel name="balance" type="text" class="form-control" id="balance" placeholder="{{currentUser.balance}}">
+                      <input [disabled]="true" ngModel name="balance" type="text" class="form-control" id="balance" [(ngModel)]="currentUser.balance">
                     </div>
                     <div class="form-group">
                       <label for="name">Age</label>
-                      <input [disabled]="true" ngModel name="age" type="text" class="form-control" id="age" [placeholder]="currentUser.age > 0 ? currentUser.age : 'Not Given'">
+                      <input [disabled]="true" ngModel name="age" type="text" class="form-control" id="age" [(ngModel)]="userAge">
                     </div>
                     <div class="form-group">
                       <label for="name">Verification</label>
-                      <input [disabled]="true" ngModel name="isVerified" type="text" class="form-control" id="verification" placeholder="{{currentUser.isVerified ? 'Verified' : 'Not Verified'}}">
+                      <input [disabled]="true" ngModel name="isVerified" type="text" class="form-control" id="verification" [(ngModel)]="isVerified">
+                    </div>
+                    <div class="modal-footer">
+                      <button style="width: auto;" (click)="makeProfileChangeable()" type="button" class="btn btn-primary">TO CHANGE</button>
+                      <button [disabled]="updateProfileForm.invalid" type="submit" class="btn btn-primary" >UPDATE</button>
                     </div>
                   </form>
                 </div>
@@ -148,6 +152,24 @@
                   </div>
                   <div class="modal-body">
                     <h3 id="createTaskModalText">Task was successfully created</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!---->
+            <!--Updated User Modal-->
+            <div class="modal fade" id="updatedUserModal" tabindex="-1" aria-labelledby="updatedUserModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div id="modal-content_3" class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="updatedUserModalLabes">Updated</h1>
+                    <button type="button" id="updated-user" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h3 id="updatedUserModalText">User was successfully updated</h3>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" (click)="logoutUpdatedUser()" class="btn btn-primary" >CONTINUE</button>
                   </div>
                 </div>
               </div>

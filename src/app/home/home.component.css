@@ -139,7 +139,7 @@
     margin-bottom: 5px;
   }
 
-  #modal-content_2{
+  #modal-content_2, #modal-content_3{
     background-color: rgb(113, 176, 113);
   }
   
@@ -155,7 +155,7 @@
     color: white;
   }
   
-  #createTaskModalText {
+  #createTaskModalText, #updatedUserModalText {
     margin: 0px;
     padding-bottom: 30px;
     text-align: center;

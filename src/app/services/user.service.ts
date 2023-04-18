@@ -20,14 +20,20 @@ export class UserService {
   }
 
   public getUser() {
-    const getUserURL = "/api/get/user/current";
+    const getUserUrl = "/api/get/user/current";
 
-    return this.http.get<User>(getUserURL);
+    return this.http.get<User>(getUserUrl);
   }
 
   public getPairInTransaction(transactionId: number) {
-    const getPairInTransaction = `/api/get/pairInTransaction/${transactionId}`;
+    const getPairInTransactionUrl = `/api/get/pairInTransaction/${transactionId}`;
 
-    return this.http.get<User[]>(getPairInTransaction);
+    return this.http.get<User[]>(getPairInTransactionUrl);
+  }
+
+  public updateUser(user: User) {
+    const updateUserUrl = "/api/update/user";
+
+    return this.http.put<User>(updateUserUrl, user);
   }
 }

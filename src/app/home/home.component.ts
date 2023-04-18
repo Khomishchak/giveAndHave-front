@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Application } from '../models/application';
 import { Task } from '../models/task';
 import { Transaction } from '../models/transaction';
 import { User } from '../models/user';
@@ -17,8 +16,13 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('updatedUserModal') updatedProfileModal: any;
+  @ViewChild('profileModal') profileModal: any;
+
   currentUser: User;
   balance: number;
+  userAge: string;
+  isVerified: string;
   profileDisabled: boolean = true;
 
   showModal: boolean = false;
@@ -60,6 +64,8 @@ export class HomeComponent implements OnInit {
       button.setAttribute('data-bs-target', '#profileModal');
     } else if(action == 'Messages') {
       this.router.navigate(['/messages']);
+    } else if(action == 'UpdatedUser') {
+      button.setAttribute('data-bs-target', '#updatedUserModal');
     }
 
     container?.appendChild(button);
@@ -83,6 +89,22 @@ export class HomeComponent implements OnInit {
   }
 
   onUpdateProfile(updateProfileForm: NgForm) {
+    
+    this.userService.updateUser(updateProfileForm.value).subscribe(
+      () => {
+        this.performAction('UpdatedUser');
+      },
+      (err) => {
+        // error
+      }
+    );
+  }
+
+  logoutUpdatedUser() {
+    this.logout();
+    console.log(this.updatedProfileModal);
+    this.updatedProfileModal.hide();
+    this.profileModal.hide();
   }
 
   makeProfileChangeable() {
@@ -91,12 +113,14 @@ export class HomeComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login']);
   }
 
   private getCurrentUser() {
     this.userService.getUser().subscribe(data => {
       this.currentUser = data;
+      this.userAge = `${data.age}` || 'Not given';
+      this.isVerified = data.isVerified ? 'Verified' : 'Not Verified'
       this.getNewMessagesAmount(this.currentUser);
       this.balance = this.currentUser.balance;
     })
