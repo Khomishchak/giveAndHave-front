@@ -20,7 +20,7 @@ export class UserService {
   }
 
   public getUser() {
-    const getUserURL = "/api/get/user";
+    const getUserURL = "/api/get/user/current";
 
     return this.http.get<User>(getUserURL);
   }
