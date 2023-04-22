@@ -26,7 +26,7 @@
               <span class="status-dot {{ task.taskActive ? 'active' : 'taken'}}"></span>
             </td>
             <td class="cell">
-              <button [disabled]="!task.taskActive" (click)="openRequestForTaskModal(task.id)">Take Task</button>
+              <button [disabled]="!task.taskActive || task.isUsersTask" (click)="openRequestForTaskModal(task.id)">Take Task</button>
             </td>
           </tr>
         </tbody>
