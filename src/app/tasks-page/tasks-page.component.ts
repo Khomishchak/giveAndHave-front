@@ -14,7 +14,9 @@ import { UserService } from '../services/user.service';
 export class TasksPageComponent implements OnInit {
 
   tasks: Task[];
+
   currentUser: User;
+  currentUserTaskIds: number[];
 
   taskId: number;
 
@@ -22,19 +24,36 @@ export class TasksPageComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     
-    this.getTasks();
-    this.getCurrentUser();
+    this.init();
+  }
+
+  private init() {
+    this.userService.getUser().subscribe(data => {
+      this.currentUser = data;
+      
+      this.taskService.getAllTaskIdsByUserIdUrl(this.currentUser.id).subscribe(tasksData => {
+        this.currentUserTaskIds = tasksData;
+
+        this.taskService.getAllTasks().subscribe(
+          data => {
+            this.tasks = data;
+            console.log(this.currentUserTaskIds);
+            this.tasks.forEach(task => {
+              console.log(`task = ${task.id}`)
+              this.currentUserTaskIds.includes(task.id) ? task.isUsersTask = false : task.isUsersTask = true;
+            })
+            console.log(this.tasks);
+          }
+        );
+      })
+    })
   }
 
   private getTasks() {
     
-    return this.taskService.findAllTasks().subscribe(
-      data => {
-        this.tasks = data
-      }
-    );
+    
   }
 
   performAction(task: Task){
@@ -73,11 +92,5 @@ export class TasksPageComponent implements OnInit {
     })
 
     this.onOpen('successfullyRequestedForTaskModal');
-  }
-
-  private getCurrentUser() {
-    this.userService.getUser().subscribe(data => {
-      this.currentUser = data;
-    })
   }
 }

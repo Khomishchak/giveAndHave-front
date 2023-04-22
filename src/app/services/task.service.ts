@@ -17,7 +17,7 @@ export class TaskService {
     return this.http.post<void>(postTaskUrl, task);
   }
 
-  public findAllTasks(): Observable<Task[]> {
+  public getAllTasks(): Observable<Task[]> {
 
     const getAllTasksUrl = '/api/get/task/all';
 
@@ -29,5 +29,12 @@ export class TaskService {
     const postRequestForTaskUrl = `/api/post/request/task/${userId}/${taskId}`;
 
     return this.http.post<void>(postRequestForTaskUrl, {});
+  }
+
+  public getAllTaskIdsByUserIdUrl(userId: number): Observable<number[]> {
+
+    const getAllTaskIdsByUserIdUrl = `/api/get/task_id/all/${userId}`;
+
+    return this.http.get<number[]>(getAllTaskIdsByUserIdUrl);
   }
 }
