@@ -55,7 +55,6 @@ export class MessagesPageComponent implements OnInit {
   accept() {
 
     this.applicationService.acceptUser(this.curretnApplication.task.id , this.acceptedUser).subscribe(
-      data => console.log("DONE")
     );
 
     this.performAction('acceptedUserModal', null);
