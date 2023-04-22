@@ -14,6 +14,6 @@ export class User {
 
     isVerified: boolean;
 
-    transactions: Transaction;
-    tasks: Task;
+    transactions: Transaction[];
+    tasks: Task[];
 }

@@ -8,6 +8,7 @@ export class Task {
     price: number;
 
     taskActive: boolean;
+    isUsersTask: boolean;
 
     deadline: Date | null;
 }

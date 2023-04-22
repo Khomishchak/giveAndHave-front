@@ -14,7 +14,9 @@ import { UserService } from '../services/user.service';
 export class TasksPageComponent implements OnInit {
 
   tasks: Task[];
+
   currentUser: User;
+  currentUserTaskIds: number[];
 
   taskId: number;
 
@@ -22,19 +24,28 @@ export class TasksPageComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     
-    this.getTasks();
-    this.getCurrentUser();
+    this.init();
   }
 
-  private getTasks() {
-    
-    return this.taskService.findAllTasks().subscribe(
-      data => {
-        this.tasks = data
-      }
-    );
+  private init() {
+    this.userService.getUser().subscribe(data => {
+      this.currentUser = data;
+      
+      this.taskService.getAllTaskIdsByUserIdUrl(this.currentUser.id).subscribe(tasksData => {
+        this.currentUserTaskIds = tasksData;
+
+        this.taskService.getAllTasks().subscribe(
+          data => {
+            this.tasks = data;
+            this.tasks.forEach(task => {
+              this.currentUserTaskIds.includes(task.id) ? task.isUsersTask = true : task.isUsersTask = false;
+            })
+          }
+        );
+      })
+    })
   }
 
   performAction(task: Task){
@@ -73,11 +84,5 @@ export class TasksPageComponent implements OnInit {
     })
 
     this.onOpen('successfullyRequestedForTaskModal');
-  }
-
-  private getCurrentUser() {
-    this.userService.getUser().subscribe(data => {
-      this.currentUser = data;
-    })
   }
 }
