@@ -60,10 +60,12 @@ export class HomeComponent implements OnInit {
       button.setAttribute('data-bs-target', '#postTaskModal');
     } else if(action == 'Take Task') {
       this.router.navigate(['/tasks']);
+      return;
     } else if(action == 'Profile') {
       button.setAttribute('data-bs-target', '#profileModal');
     } else if(action == 'Messages') {
       this.router.navigate(['/messages']);
+      return;
     } else if(action == 'UpdatedUser') {
       button.setAttribute('data-bs-target', '#updatedUserModal');
     }
@@ -102,7 +104,6 @@ export class HomeComponent implements OnInit {
 
   logoutUpdatedUser() {
     this.logout();
-    console.log(this.updatedProfileModal);
     this.updatedProfileModal.hide();
     this.profileModal.hide();
   }

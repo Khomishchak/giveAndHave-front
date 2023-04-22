@@ -39,21 +39,13 @@ export class TasksPageComponent implements OnInit {
         this.taskService.getAllTasks().subscribe(
           data => {
             this.tasks = data;
-            console.log(this.currentUserTaskIds);
             this.tasks.forEach(task => {
-              console.log(`task = ${task.id}`)
-              this.currentUserTaskIds.includes(task.id) ? task.isUsersTask = false : task.isUsersTask = true;
+              this.currentUserTaskIds.includes(task.id) ? task.isUsersTask = true : task.isUsersTask = false;
             })
-            console.log(this.tasks);
           }
         );
       })
     })
-  }
-
-  private getTasks() {
-    
-    
   }
 
   performAction(task: Task){
