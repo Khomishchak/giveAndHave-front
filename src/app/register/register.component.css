@@ -95,3 +95,34 @@ button[type="submit"] {
 input.ng-invalid.ng-touched {
   border: red 2px solid;
 }
+.modal-content {
+  background-color: #333334;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+#errors {
+  color: #ff6f61;
+}
+
+.errorsText {
+  margin: 0px;
+  padding-bottom: 10px;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: normal;
+  font-style: normal; 
+  font-size: 18px;
+  color: #ff6f61;
+}
+#errors-form {
+  background-color: #ff6f61;
+  border: 2px solid #e8493a;
+  border-radius: 5px;
+  font-size: 14px;
+}

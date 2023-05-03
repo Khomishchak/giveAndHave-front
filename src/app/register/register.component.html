@@ -3,52 +3,74 @@
     <link rel="stylesheet" type="text/css" href="register.component.css">
   </head>
   <body>
-    <form name="form" (ngSubmit)="register()" #f="ngForm">
-      <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" name="name" class="form-control" id="name" [(ngModel)]="model.name" #name="ngModel" required />
-      </div>
-      <div class="form-group">
-          <label for="password">Password</label>
-          <i style="font-size: 20px;" title="Password requirements:
-          - At least 6 characters
-          - At least 1 uppercase letter
-          - At least 1 lowercase letter
-          - At least 1 digit
-          - At least 1 special character" class="fa fa-info-circle" aria-hidden="true"></i>
-          <input type="password" name="password" class="form-control" id="password"
-           [(ngModel)]="model.password" #password="ngModel"
-           pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$"
-           required />
-      </div>
-      <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control" id="email" 
-            [(ngModel)]="model.email" #email="ngModel" 
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-            required />
+    <div id="mainContainer">
+      <form name="form" (ngSubmit)="register(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" required />
         </div>
         <div class="form-group">
-            <div class="input-group">
-              <div>
-                <label for="groupName">Group name</label>
-                <input type="text" name="groupName" class="form-control" id="groupName" [(ngModel)]="model.groupName" #groupName="ngModel"required />
+            <label for="password">Password</label>
+            <i style="font-size: 20px;" title="Password requirements:
+            - At least 6 characters
+            - At least 1 uppercase letter
+            - At least 1 lowercase letter
+            - At least 1 digit
+            - At least 1 special character" class="fa fa-info-circle" aria-hidden="true"></i>
+            <input type="password" ngModel name="password" class="form-control" id="password"
+             pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$"
+             required />
+        </div>
+        <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" ngModel name="email" class="form-control" id="email" 
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              required />
+          </div>
+          <div class="form-group">
+              <div class="input-group">
+                <div>
+                  <label for="groupName">Group name</label>
+                  <input type="text" ngModel name="groupName" class="form-control" id="groupName" required />
+                </div>
+                <div>
+                  <label for="age">Age</label>
+                  <input type="text" ngModel name="age" class="form-control" id="age"/>
+                </div>
               </div>
-              <div>
-                <label for="age">Age</label>
-                <input type="text" name="age" class="form-control" id="age" [(ngModel)]="model.age" #age="ngModel"/>
+          </div>
+            
+          <div>
+              <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Register</button>
+              <div class="login">
+                Do have an account?
+                <a href="/login">Log in</a>
+              </div>
+          </div>
+      </form>
+
+      <!--Errors Modal-->
+      <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="errorsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div id="modal-content" class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="errorsModalLabes">Error creating user:</h1>
+              <button type="button" id="errors-form" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="section">
+                <table>
+                  <tr *ngFor="let message of messages">
+                    <p class="errorsText">{{ message.message }}<p>
+                  </tr>
+                </table>
               </div>
             </div>
+          </div>
         </div>
-          
-        <div>
-            <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Register</button>
-            <div class="login">
-              Do have an account?
-              <a href="/login">Log in</a>
-            </div>
-        </div>
-    </form>
+      </div>
+      <!---->
+    </div>
   </body>
 </html>
 
