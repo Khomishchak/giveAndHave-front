@@ -8,6 +8,9 @@ import { ApplicationService } from '../services/application.service';
 import { TaskService } from '../services/task.service';
 import { TransactionService } from '../services/transaction.service';
 import { UserService } from '../services/user.service';
+import { SseService } from '../services/sse.service';
+import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -32,11 +35,14 @@ export class HomeComponent implements OnInit {
   newMessagesAmount: number;
   actions = ['Post Task', 'Take Task'];
 
+  private sub: Subscription;
+
   constructor(private router: Router,
     private userService: UserService,
     private transactionService: TransactionService,
     private taskService: TaskService,
-    private applicationService: ApplicationService) { }
+    private applicationService: ApplicationService,
+    private sseService: SseService) { }
 
   ngOnInit(): void {
 
@@ -45,6 +51,20 @@ export class HomeComponent implements OnInit {
     this.getFreelancers();
     
     this.getAllTrasactions();
+
+    this.sub = this.sseService.getEventSource().subscribe(
+      data => {
+        const info = JSON.parse(data.data);
+        alert(`User: ${info.from}\nsent you a message: ${info.message}`);
+      },
+      error => {
+        console.error('There was an error: ', error);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   performAction(action: any) {
@@ -172,4 +192,3 @@ export class HomeComponent implements OnInit {
     button.click();
   }
 }
-
